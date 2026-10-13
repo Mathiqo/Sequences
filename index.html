@@ -52,7 +52,7 @@
 
         .progress-bar {
             height: 100%;
-            width: 20%;
+            width: 16.66%;
             background-color: var(--primary);
             transition: width 0.4s ease;
         }
@@ -88,7 +88,6 @@
             border-radius: 0 8px 8px 0;
         }
 
-        /* Visual Sequence Jump Diagram */
         .jump-diagram {
             display: flex;
             align-items: center;
@@ -154,7 +153,6 @@
             margin-top: -2px;
         }
 
-        /* Upgraded Function Machine Styling */
         .machine-wrapper {
             background: #ffffff;
             border: 2px solid #e2e8f0;
@@ -209,7 +207,6 @@
             color: #10b981;
         }
 
-        /* Builder Interactive Inputs */
         .builder-slot {
             background: #f8fafc;
             border: 2px dashed #cbd5e1;
@@ -220,7 +217,6 @@
             gap: 6px;
         }
 
-        /* Visual Dot Grid Models */
         .pattern-display {
             display: flex;
             align-items: flex-end;
@@ -260,7 +256,6 @@
             background-color: var(--accent);
         }
 
-        /* Input Controls */
         input[type="number"], input[type="text"], select {
             padding: 10px 12px;
             border: 2px solid #cbd5e1;
@@ -337,7 +332,6 @@
             background-color: #475569;
         }
 
-        /* Clean Table Formatting */
         table {
             width: 100%;
             border-collapse: separate;
@@ -390,7 +384,7 @@
 
     <!-- STEP 1 -->
     <div class="step-card active" id="step1">
-        <span class="tag">Step 1 of 5</span>
+        <span class="tag">Step 1 of 6</span>
         <h2>What is a Term-to-Term Rule?</h2>
         <p>A <strong>sequence</strong> is an ordered list of numbers. Each number in the sequence is called a <strong>term</strong>.</p>
         <p>A <strong>term-to-term rule</strong> tells you how to get from one term to the next.</p>
@@ -445,7 +439,7 @@
 
     <!-- STEP 2 -->
     <div class="step-card" id="step2">
-        <span class="tag">Step 2 of 5</span>
+        <span class="tag">Step 2 of 6</span>
         <h2>Generating Sequences with Operations</h2>
         <p>Given the <strong>first term</strong> and a <strong>rule</strong>, you can build any sequence!</p>
 
@@ -488,113 +482,127 @@
 
     <!-- STEP 3 -->
     <div class="step-card" id="step3">
-        <span class="tag">Step 3 of 5</span>
-        <h2>Two-Step Rules & Building Reverse Machines</h2>
-        <p>When a sequence rule has two steps, we can use a <strong>Function Machine</strong> to calculate forward, and construct a <strong>Reverse Function Machine</strong> with inverse operations to solve backwards!</p>
+        <span class="tag">Step 3 of 6</span>
+        <h2>Building & Master Reverse Function Machines</h2>
+        <p>To work backward from an output term to find a previous input term, use <strong>inverse operations in reverse order</strong>!</p>
 
-        <!-- Dynamic Visual Dual-Machine Model -->
         <div class="machine-wrapper">
-            <h4 style="margin: 0 0 10px 0; text-align: center; color: var(--primary);">Forward Machine (&rarr;) vs Reverse Machine (&larr;)</h4>
+            <h4 style="margin: 0 0 10px 0; text-align: center; color: var(--primary);">Reference Model: Forward (&rarr;) vs Reverse (&larr;)</h4>
             
-            <!-- Forward Machine -->
             <div class="machine-flow">
-                <div class="term-node">
-                    <div class="term-circle">3</div>
-                    <div class="term-label">Input</div>
-                </div>
+                <div class="term-node"><div class="term-circle">3</div><div class="term-label">Input</div></div>
                 <span class="flow-arrow">&rarr;</span>
-                <div class="machine-gear">
-                    <span class="machine-label">Step 1</span>
-                    &times; 2
-                </div>
+                <div class="machine-gear"><span class="machine-label">Step 1</span>&times; 2</div>
                 <span class="flow-arrow">&rarr;</span>
-                <div class="machine-gear">
-                    <span class="machine-label">Step 2</span>
-                    + 1
-                </div>
+                <div class="machine-gear"><span class="machine-label">Step 2</span>+ 1</div>
                 <span class="flow-arrow">&rarr;</span>
-                <div class="term-node">
-                    <div class="term-circle" style="background-color: var(--success);">7</div>
-                    <div class="term-label">Output</div>
-                </div>
+                <div class="term-node"><div class="term-circle" style="background-color: var(--success);">7</div><div class="term-label">Output</div></div>
             </div>
 
-            <!-- Reverse Machine -->
             <div class="machine-flow">
-                <div class="term-node">
-                    <div class="term-circle">3</div>
-                    <div class="term-label">Original Input</div>
-                </div>
+                <div class="term-node"><div class="term-circle">3</div><div class="term-label">Original Input</div></div>
                 <span class="flow-arrow reverse">&larr;</span>
-                <div class="machine-gear reverse-gear">
-                    <span class="machine-label">Undo Step 1</span>
-                    &divide; 2
-                </div>
+                <div class="machine-gear reverse-gear"><span class="machine-label">Undo Step 1</span>&divide; 2</div>
                 <span class="flow-arrow reverse">&larr;</span>
-                <div class="machine-gear reverse-gear">
-                    <span class="machine-label">Undo Step 2</span>
-                    &minus; 1
-                </div>
+                <div class="machine-gear reverse-gear"><span class="machine-label">Undo Step 2</span>&minus; 1</div>
                 <span class="flow-arrow reverse">&larr;</span>
-                <div class="term-node">
-                    <div class="term-circle" style="background-color: var(--success);">7</div>
-                    <div class="term-label">Target Output</div>
-                </div>
+                <div class="term-node"><div class="term-circle" style="background-color: var(--success);">7</div><div class="term-label">Target Output</div></div>
             </div>
         </div>
 
-        <h3>Interactive Challenge: Build the Reverse Machine!</h3>
-        <p>The Forward Rule is: <strong>"Multiply by 2, then add 1"</strong>. The Output (5th term) is <strong>25</strong>.</p>
-        <p>Complete the reverse machine below to find the previous (4th) term:</p>
-
-        <div class="machine-wrapper" style="background: #f8fafc; border-color: #cbd5e1;">
+        <!-- REVERSE MACHINE 1 (1-Step Warmup) -->
+        <div class="interactive-box">
+            <h3>Reverse Machine 1: Single-Step Warmup</h3>
+            <p>Forward Rule: <strong>"Add 6"</strong> | Output = <strong>18</strong></p>
             <div class="machine-flow">
-                <div class="term-node">
-                    <div class="term-circle" style="background-color: var(--primary);">?</div>
-                    <div class="term-label">4th Term</div>
-                </div>
-                
+                <div class="term-node"><div class="term-circle" style="background-color: var(--primary);">?</div><div class="term-label">Input</div></div>
                 <span class="flow-arrow reverse">&larr;</span>
-
-                <!-- Reverse Machine Slot 2 -->
                 <div class="builder-slot">
-                    <select id="s3_op2" style="width: auto;">
+                    <select id="m1_op" style="width: auto;">
+                        <option value="">Op</option>
+                        <option value="+">+</option>
+                        <option value="-">&minus;</option>
+                        <option value="*">&times;</option>
+                        <option value="/">&divide;</option>
+                    </select>
+                    <input type="number" id="m1_val" style="width: 55px;" placeholder="Num">
+                </div>
+                <span class="flow-arrow reverse">&larr;</span>
+                <div class="term-node"><div class="term-circle" style="background-color: var(--success);">18</div><div class="term-label">Output</div></div>
+            </div>
+            <p>Calculated Input: <input type="number" id="m1_ans"></p>
+        </div>
+
+        <!-- REVERSE MACHINE 2 (Standard 2-Step) -->
+        <div class="interactive-box">
+            <h3>Reverse Machine 2: Two-Step Order Swap</h3>
+            <p>Forward Rule: <strong>"Multiply by 2, then add 1"</strong> | Output (5th term) = <strong>25</strong></p>
+            <div class="machine-flow">
+                <div class="term-node"><div class="term-circle" style="background-color: var(--primary);">?</div><div class="term-label">4th Term</div></div>
+                <span class="flow-arrow reverse">&larr;</span>
+                <div class="builder-slot">
+                    <select id="m2_op2" style="width: auto;">
                         <option value="">Op</option>
                         <option value="/">&divide;</option>
                         <option value="*">&times;</option>
                         <option value="+">+</option>
                         <option value="-">&minus;</option>
                     </select>
-                    <input type="number" id="s3_val2" style="width: 55px;" placeholder="Num">
+                    <input type="number" id="m2_val2" style="width: 55px;" placeholder="Num">
                 </div>
-
                 <span class="flow-arrow reverse">&larr;</span>
-
-                <!-- Reverse Machine Slot 1 -->
                 <div class="builder-slot">
-                    <select id="s3_op1" style="width: auto;">
+                    <select id="m2_op1" style="width: auto;">
                         <option value="">Op</option>
                         <option value="/">&divide;</option>
                         <option value="*">&times;</option>
                         <option value="+">+</option>
                         <option value="-">&minus;</option>
                     </select>
-                    <input type="number" id="s3_val1" style="width: 55px;" placeholder="Num">
+                    <input type="number" id="m2_val1" style="width: 55px;" placeholder="Num">
                 </div>
-
                 <span class="flow-arrow reverse">&larr;</span>
-
-                <div class="term-node">
-                    <div class="term-circle" style="background-color: var(--success);">25</div>
-                    <div class="term-label">5th Term</div>
-                </div>
+                <div class="term-node"><div class="term-circle" style="background-color: var(--success);">25</div><div class="term-label">5th Term</div></div>
             </div>
+            <p>Calculated 4th Term: <input type="number" id="m2_ans1"></p>
+            <p>Apply again for 3rd Term: <input type="number" id="m2_ans2" step="any"></p>
         </div>
 
-        <p>Calculated 4th term value: <input type="number" id="s3_q1"></p>
-        <p>Apply the reverse machine again to find the 3rd term value: <input type="number" id="s3_q2" step="any"></p>
+        <!-- REVERSE MACHINE 3 (Division & Subtraction) -->
+        <div class="interactive-box">
+            <h3>Reverse Machine 3: Division & Subtraction Challenge</h3>
+            <p>Forward Rule: <strong>"Divide by 2, then subtract 3"</strong> | Output = <strong>7</strong></p>
+            <div class="machine-flow">
+                <div class="term-node"><div class="term-circle" style="background-color: var(--primary);">?</div><div class="term-label">Input</div></div>
+                <span class="flow-arrow reverse">&larr;</span>
+                <div class="builder-slot">
+                    <select id="m3_op2" style="width: auto;">
+                        <option value="">Op</option>
+                        <option value="/">&divide;</option>
+                        <option value="*">&times;</option>
+                        <option value="+">+</option>
+                        <option value="-">&minus;</option>
+                    </select>
+                    <input type="number" id="m3_val2" style="width: 55px;" placeholder="Num">
+                </div>
+                <span class="flow-arrow reverse">&larr;</span>
+                <div class="builder-slot">
+                    <select id="m3_op1" style="width: auto;">
+                        <option value="">Op</option>
+                        <option value="/">&divide;</option>
+                        <option value="*">&times;</option>
+                        <option value="+">+</option>
+                        <option value="-">&minus;</option>
+                    </select>
+                    <input type="number" id="m3_val1" style="width: 55px;" placeholder="Num">
+                </div>
+                <span class="flow-arrow reverse">&larr;</span>
+                <div class="term-node"><div class="term-circle" style="background-color: var(--success);">7</div><div class="term-label">Output</div></div>
+            </div>
+            <p>Calculated Input: <input type="number" id="m3_ans"></p>
+        </div>
 
-        <button class="btn" onclick="checkStep3()">Check Reverse Machine</button>
+        <button class="btn" onclick="checkStep3()">Check All Reverse Machines</button>
         <div class="feedback" id="fb3"></div>
 
         <div class="nav-buttons">
@@ -605,7 +613,7 @@
 
     <!-- STEP 4 -->
     <div class="step-card" id="step4">
-        <span class="tag">Step 4 of 5</span>
+        <span class="tag">Step 4 of 6</span>
         <h2>Visual Dot Patterns & Position Rules</h2>
         <p>Visual models help us discover a direct <strong>position-to-term rule</strong> so we can calculate any term (like the 100th term) without counting step-by-step!</p>
 
@@ -675,29 +683,64 @@
 
     <!-- STEP 5 -->
     <div class="step-card" id="step5">
-        <span class="tag">Step 5 of 5</span>
+        <span class="tag">Step 5 of 6</span>
+        <h2>Finding & Substituting Position-to-Term Rules</h2>
+
+        <div class="interactive-box">
+            <h3>Task A: Substitution</h3>
+            <p>A sequence has the position-to-term rule: <strong>Term = 4<span class="math-var">n</span> &minus; 1</strong></p>
+            <p>1. Find the 1st term (<span class="math-var">n</span> = 1): <input type="number" id="s5_a1"></p>
+            <p>2. Find the 5th term (<span class="math-var">n</span> = 5): <input type="number" id="s5_a2"></p>
+            <p>3. Find the 20th term (<span class="math-var">n</span> = 20): <input type="number" id="s5_a3"></p>
+        </div>
+
+        <div class="interactive-box">
+            <h3>Task B: Derive the Rule from a Sequence</h3>
+            <p>Given the sequence: <strong>5, 9, 13, 17, 21, ...</strong></p>
+            <p>1. What is the difference between consecutive terms? <input type="number" id="s5_b1"></p>
+            <p>2. Select the correct position-to-term rule:</p>
+            <select id="s5_b2" style="width: 100%; max-width: 320px; text-align: left;">
+                <option value="">-- Choose Option --</option>
+                <option value="A">Term = 5n - 1</option>
+                <option value="B">Term = 4n + 1</option>
+                <option value="C">Term = 4n + 5</option>
+            </select>
+        </div>
+
+        <button class="btn" onclick="checkStep5()">Check Answers</button>
+        <div class="feedback" id="fb5"></div>
+
+        <div class="nav-buttons">
+            <button class="btn btn-secondary" onclick="goToStep(4)">&larr; Back</button>
+            <button class="btn" id="next5" style="display:none;" onclick="goToStep(6)">Next Step &rarr;</button>
+        </div>
+    </div>
+
+    <!-- STEP 6 -->
+    <div class="step-card" id="step6">
+        <span class="tag">Step 6 of 6</span>
         <h2>Final Codebreaker Challenge!</h2>
         <p>Put your new skills to work in this final master challenge.</p>
 
         <div class="interactive-box">
             <p>The first three terms of a simple sequence are <strong>2, 5, 11, ...</strong></p>
             <p><strong>A.</strong> Which rule generates this sequence?</p>
-            <select id="s5_q1" style="width: 100%; max-width: 320px; text-align: left;">
+            <select id="s6_q1" style="width: 100%; max-width: 320px; text-align: left;">
                 <option value="">-- Choose Option --</option>
                 <option value="A">A: Add 3 each time</option>
                 <option value="B">B: Multiply by 2, then add 1</option>
                 <option value="C">C: Multiply by 3, then subtract 1</option>
             </select>
 
-            <p><strong>B.</strong> What is the 4th term in this sequence? <input type="number" id="s5_q2"></p>
-            <p><strong>C.</strong> What is the 5th term in this sequence? <input type="number" id="s5_q3"></p>
+            <p><strong>B.</strong> What is the 4th term in this sequence? <input type="number" id="s6_q2"></p>
+            <p><strong>C.</strong> What is the 5th term in this sequence? <input type="number" id="s6_q3"></p>
         </div>
 
-        <button class="btn" onclick="checkStep5()">Submit Final Challenge</button>
-        <div class="feedback" id="fb5"></div>
+        <button class="btn" onclick="checkStep6()">Submit Final Challenge</button>
+        <div class="feedback" id="fb6"></div>
 
         <div class="nav-buttons">
-            <button class="btn btn-secondary" onclick="goToStep(4)">&larr; Back</button>
+            <button class="btn btn-secondary" onclick="goToStep(5)">&larr; Back</button>
         </div>
     </div>
 </div>
@@ -706,7 +749,7 @@
     function goToStep(stepNum) {
         document.querySelectorAll('.step-card').forEach(card => card.classList.remove('active'));
         document.getElementById('step' + stepNum).classList.add('active');
-        document.getElementById('progressBar').style.width = (stepNum * 20) + '%';
+        document.getElementById('progressBar').style.width = (stepNum * (100 / 6)) + '%';
     }
 
     function checkStep1() {
@@ -743,28 +786,41 @@
     }
 
     function checkStep3() {
-        const op1 = document.getElementById('s3_op1').value;
-        const val1 = parseFloat(document.getElementById('s3_val1').value);
-        const op2 = document.getElementById('s3_op2').value;
-        const val2 = parseFloat(document.getElementById('s3_val2').value);
-        
-        const q1 = parseFloat(document.getElementById('s3_q1').value);
-        const q2 = parseFloat(document.getElementById('s3_q2').value);
+        // Machine 1
+        const m1_op = document.getElementById('m1_op').value;
+        const m1_val = parseFloat(document.getElementById('m1_val').value);
+        const m1_ans = parseFloat(document.getElementById('m1_ans').value);
+        const isM1Correct = (m1_op === '-' && m1_val === 6 && m1_ans === 12);
+
+        // Machine 2
+        const m2_op1 = document.getElementById('m2_op1').value;
+        const m2_val1 = parseFloat(document.getElementById('m2_val1').value);
+        const m2_op2 = document.getElementById('m2_op2').value;
+        const m2_val2 = parseFloat(document.getElementById('m2_val2').value);
+        const m2_ans1 = parseFloat(document.getElementById('m2_ans1').value);
+        const m2_ans2 = parseFloat(document.getElementById('m2_ans2').value);
+        const isM2Correct = (m2_op1 === '-' && m2_val1 === 1) && (m2_op2 === '/' && m2_val2 === 2) && (m2_ans1 === 12) && (m2_ans2 === 5.5);
+
+        // Machine 3
+        const m3_op1 = document.getElementById('m3_op1').value;
+        const m3_val1 = parseFloat(document.getElementById('m3_val1').value);
+        const m3_op2 = document.getElementById('m3_op2').value;
+        const m3_val2 = parseFloat(document.getElementById('m3_val2').value);
+        const m3_ans = parseFloat(document.getElementById('m3_ans').value);
+        const isM3Correct = (m3_op1 === '+' && m3_val1 === 3) && (m3_op2 === '*' && m3_val2 === 2) && (m3_ans === 20);
+
         const fb = document.getElementById('fb3');
 
-        const isMachineCorrect = (op1 === '-' && val1 === 1) && (op2 === '/' && val2 === 2);
-        const isAnswersCorrect = (q1 === 12) && (q2 === 5.5);
-
-        if (isMachineCorrect && isAnswersCorrect) {
+        if (isM1Correct && isM2Correct && isM3Correct) {
             fb.className = "feedback correct";
-            fb.innerHTML = "Perfect! You constructed the exact inverse function machine (Subtract 1 then Divide by 2) and solved the terms accurately!";
+            fb.innerHTML = "Outstanding! You solved all three reverse machines using inverse operations!";
             document.getElementById('next3').style.display = "inline-block";
-        } else if (!isMachineCorrect) {
-            fb.className = "feedback incorrect";
-            fb.innerHTML = "Machine setup incorrect! Remember to invert operations in reverse order: Undo '+1' first with '- 1', then undo '&times; 2' with '&divide; 2'.";
         } else {
             fb.className = "feedback incorrect";
-            fb.innerHTML = "Your reverse machine operations are correct! Re-check calculations: (25 - 1) &divide; 2 = 12, then (12 - 1) &divide; 2 = 5.5.";
+            fb.innerHTML = "Check your setups:<br>" +
+                "• Machine 1: Undo '+6' with '- 6' (18 - 6 = 12).<br>" +
+                "• Machine 2: First undo '+1' with '- 1', then undo '&times; 2' with '&divide; 2'.<br>" +
+                "• Machine 3: First undo '-3' with '+ 3' (7 + 3 = 10), then undo '&divide; 2' with '&times; 2' (10 &times; 2 = 20).";
         }
     }
 
@@ -785,10 +841,35 @@
     }
 
     function checkStep5() {
-        const q1 = document.getElementById('s5_q1').value;
-        const q2 = parseInt(document.getElementById('s5_q2').value);
-        const q3 = parseInt(document.getElementById('s5_q3').value);
+        const a1 = parseInt(document.getElementById('s5_a1').value);
+        const a2 = parseInt(document.getElementById('s5_a2').value);
+        const a3 = parseInt(document.getElementById('s5_a3').value);
+        
+        const b1 = parseInt(document.getElementById('s5_b1').value);
+        const b2 = document.getElementById('s5_b2').value;
+        
         const fb = document.getElementById('fb5');
+
+        const isTaskACorrect = (a1 === 3) && (a2 === 19) && (a3 === 79);
+        const isTaskBCorrect = (b1 === 4) && (b2 === 'B');
+
+        if (isTaskACorrect && isTaskBCorrect) {
+            fb.className = "feedback correct";
+            fb.innerHTML = "Great job! You successfully substituted position values and derived the position-to-term rule!";
+            document.getElementById('next5').style.display = "inline-block";
+        } else {
+            fb.className = "feedback incorrect";
+            fb.innerHTML = "Check your answers:<br>" +
+                "• Task A: 4(1)-1 = 3, 4(5)-1 = 19, 4(20)-1 = 79.<br>" +
+                "• Task B: The difference between terms is +4 (4n). Since 4(1) = 4, add 1 to get 5, giving Rule: 4n + 1.";
+        }
+    }
+
+    function checkStep6() {
+        const q1 = document.getElementById('s6_q1').value;
+        const q2 = parseInt(document.getElementById('s6_q2').value);
+        const q3 = parseInt(document.getElementById('s6_q3').value);
+        const fb = document.getElementById('fb6');
 
         if (q1 === 'B' && q2 === 23 && q3 === 47) {
             fb.className = "feedback correct";
