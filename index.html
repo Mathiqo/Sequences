@@ -87,12 +87,66 @@
             border-radius: 0 8px 8px 0;
         }
 
+        /* Visual Sequence Jump Diagram */
+        .jump-diagram {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            margin: 25px 0;
+            flex-wrap: wrap;
+        }
+
+        .term-node {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .term-circle {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .term-label {
+            font-size: 0.75rem;
+            color: #64748b;
+            margin-top: 4px;
+        }
+
+        .jump-arrow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .jump-arrow span {
+            font-size: 0.85rem;
+            background-color: #fef3c7;
+            padding: 2px 8px;
+            border-radius: 12px;
+            border: 1px solid var(--accent);
+        }
+
+        /* Visual Dot Grid Models */
         .pattern-display {
             display: flex;
             align-items: flex-end;
             gap: 20px;
             justify-content: center;
             margin: 25px 0;
+            flex-wrap: wrap;
         }
 
         .pattern-item {
@@ -101,7 +155,6 @@
 
         .dots-grid {
             display: grid;
-            grid-template-columns: repeat(2, 16px);
             gap: 6px;
             background: #e2e8f0;
             padding: 10px;
@@ -116,12 +169,41 @@
             border-radius: 50%;
         }
 
+        .dot.new-dot {
+            background-color: var(--accent);
+        }
+
+        /* Visual Function Machine */
+        .machine-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .machine-box {
+            background-color: #4f46e5;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.15);
+        }
+
+        .machine-arrow {
+            font-size: 1.5rem;
+            color: #64748b;
+        }
+
         input[type="number"], input[type="text"] {
             padding: 10px 14px;
             border: 2px solid #cbd5e1;
             border-radius: 6px;
             font-size: 1rem;
-            width: 100px;
+            width: 90px;
             text-align: center;
             margin: 5px;
         }
@@ -215,17 +297,47 @@
     <div class="step-card active" id="step1">
         <span class="tag">Step 1 of 5</span>
         <h2>What is a Term-to-Term Rule?</h2>
-        <p>A <strong>sequence</strong> is a pattern of numbers that follows a specific rule[cite: 1]. Each number in the sequence is called a <strong>term</strong>.</p>
-        <p>A <strong>term-to-term rule</strong> tells you how to get from one term to the next term[cite: 1].</p>
+        <p>A <strong>sequence</strong> is an ordered list of numbers. Each number in the sequence is called a <strong>term</strong>.</p>
+        <p>A <strong>term-to-term rule</strong> tells you how to get from one term to the next.</p>
         
         <div class="interactive-box">
-            <p><strong>Example Sequence:</strong> 1, 2½, 4, 5½, 7, ...[cite: 1]</p>
-            <p>Notice that each number increases by <strong>1½</strong> relative to the previous number[cite: 1]. Therefore, the term-to-term rule is <strong>"add 1½"</strong>[cite: 1].</p>
+            <p><strong>Visual Model Example:</strong> Start at <strong>2</strong> and <strong>Add 3</strong> each step.</p>
+            <div class="jump-diagram">
+                <div class="term-node">
+                    <div class="term-circle">2</div>
+                    <div class="term-label">1st term</div>
+                </div>
+                <div class="jump-arrow">
+                    <span>+3</span>
+                    &rarr;
+                </div>
+                <div class="term-node">
+                    <div class="term-circle">5</div>
+                    <div class="term-label">2nd term</div>
+                </div>
+                <div class="jump-arrow">
+                    <span>+3</span>
+                    &rarr;
+                </div>
+                <div class="term-node">
+                    <div class="term-circle">8</div>
+                    <div class="term-label">3rd term</div>
+                </div>
+                <div class="jump-arrow">
+                    <span>+3</span>
+                    &rarr;
+                </div>
+                <div class="term-node">
+                    <div class="term-circle">11</div>
+                    <div class="term-label">4th term</div>
+                </div>
+            </div>
+            <p style="text-align: center; margin-0;">The term-to-term rule is <strong>"Add 3"</strong>.</p>
         </div>
 
         <h3>Check Your Understanding:</h3>
-        <p>Find the missing numbers in this sequence: <strong>7, 10½, 14, 17½, <input type="number" id="s1_q1" step="0.5">, <input type="number" id="s1_q2" step="0.5"></strong>[cite: 2]</p>
-        <p>What is the term-to-term rule? Add <input type="number" id="s1_rule" step="0.5">[cite: 2]</p>
+        <p>Look at this simple sequence: <strong>4, 6, 8, 10, <input type="number" id="s1_q1">, <input type="number" id="s1_q2"></strong></p>
+        <p>What is the term-to-term rule? Add <input type="number" id="s1_rule"></p>
 
         <button class="btn" onclick="checkStep1()">Check Answer</button>
         <div class="feedback" id="fb1"></div>
@@ -239,20 +351,36 @@
     <!-- STEP 2 -->
     <div class="step-card" id="step2">
         <span class="tag">Step 2 of 5</span>
-        <h2>Generating Sequences with Decimals & Operations</h2>
-        <p>You can <strong>generate</strong> a full sequence when given the <strong>first term</strong> and the <strong>rule</strong>[cite: 1]. Rules can involve addition, subtraction, multiplication, or division[cite: 3, 4].</p>
+        <h2>Generating Sequences with Operations</h2>
+        <p>Given the <strong>first term</strong> and a <strong>rule</strong>, you can build any sequence!</p>
 
         <div class="interactive-box">
-            <p><strong>Example:</strong> First term = <code>10</code>. Rule = <code>Subtract 0.2</code>[cite: 3]</p>
-            <p>Terms: 10, 9.8, 9.6, 9.4, 9.2, ...[cite: 3]</p>
+            <p><strong>Visual Model:</strong> First term = <code>10</code> | Rule = <code>Subtract 2</code></p>
+            <div class="jump-diagram">
+                <div class="term-node">
+                    <div class="term-circle">10</div>
+                </div>
+                <div class="jump-arrow"><span>-2</span>&rarr;</div>
+                <div class="term-node">
+                    <div class="term-circle">8</div>
+                </div>
+                <div class="jump-arrow"><span>-2</span>&rarr;</div>
+                <div class="term-node">
+                    <div class="term-circle">6</div>
+                </div>
+                <div class="jump-arrow"><span>-2</span>&rarr;</div>
+                <div class="term-node">
+                    <div class="term-circle">4</div>
+                </div>
+            </div>
         </div>
 
         <h3>Practice Generator:</h3>
-        <p>1. If First term = <strong>0.4</strong> and the rule is <strong>Multiply by 2</strong>[cite: 4]:</p>
-        <p>First 3 terms: 0.4, <input type="number" id="s2_q1" step="0.1">, <input type="number" id="s2_q2" step="0.1">[cite: 4]</p>
+        <p><strong>1.</strong> First term = <strong>3</strong>, Rule = <strong>Multiply by 2</strong></p>
+        <p>First 3 terms: 3, <input type="number" id="s2_q1">, <input type="number" id="s2_q2"></p>
 
-        <p>2. If First term = <strong>20</strong> and the rule is <strong>Subtract 2.5</strong>[cite: 4]:</p>
-        <p>First 3 terms: 20, <input type="number" id="s2_q3" step="0.5">, <input type="number" id="s2_q4" step="0.5">[cite: 4]</p>
+        <p><strong>2.</strong> First term = <strong>20</strong>, Rule = <strong>Subtract 5</strong></p>
+        <p>First 3 terms: 20, <input type="number" id="s2_q3">, <input type="number" id="s2_q4"></p>
 
         <button class="btn" onclick="checkStep2()">Check Answer</button>
         <div class="feedback" id="fb2"></div>
@@ -266,23 +394,28 @@
     <!-- STEP 3 -->
     <div class="step-card" id="step3">
         <span class="tag">Step 3 of 5</span>
-        <h2>Two-Step Rules & Reversing Operations</h2>
-        <p>Some rules combine two operations, such as <strong>"multiply by 2 and add 5"</strong>[cite: 1]. You can also work <em>backwards</em> using inverse (opposite) operations[cite: 6]!</p>
+        <h2>Two-Step Rules & Working Backwards</h2>
+        <p>Some rules combine two operations (e.g., <strong>"Multiply by 2, then add 1"</strong>).</p>
 
         <div class="interactive-box">
-            <p><strong>Example (Forward):</strong> First term = <code>3</code>. Rule = <code>Multiply by 2, then add 5</code>[cite: 1]</p>
-            <ul>
-                <li>2nd term: $3 \times 2 + 5 = 11$[cite: 1]</li>
-                <li>3rd term: $11 \times 2 + 5 = 27$[cite: 1]</li>
-                <li>4th term: $27 \times 2 + 5 = 59$[cite: 1]</li>
-            </ul>
+            <p style="text-align:center;"><strong>Function Machine Model:</strong></p>
+            <div class="machine-container">
+                <span class="term-node"><span class="term-circle">3</span></span>
+                <span class="machine-arrow">&rarr;</span>
+                <span class="machine-box">&times; 2</span>
+                <span class="machine-arrow">&rarr;</span>
+                <span class="machine-box">+ 1</span>
+                <span class="machine-arrow">&rarr;</span>
+                <span class="term-node"><span class="term-circle" style="background-color: var(--success);">7</span></span>
+            </div>
+            <p>To work <strong>backwards</strong>, undo the operations in reverse order: <strong>Subtract 1, then divide by 2</strong>.</p>
         </div>
 
         <h3>Challenge Problem:</h3>
-        <p>The <strong>7th term</strong> of a sequence is <strong>442</strong>[cite: 6].</p>
-        <p>The term-to-term rule is: <strong>"Add 3, then multiply by 2"</strong>[cite: 6].</p>
-        <p>Work backwards to find the <strong>6th term</strong>: <input type="number" id="s3_q1">[cite: 6]</p>
-        <p>Work backwards to find the <strong>5th term</strong>: <input type="number" id="s3_q2">[cite: 6]</p>
+        <p>The <strong>5th term</strong> of a sequence is <strong>25</strong>.</p>
+        <p>The term-to-term rule is: <strong>"Multiply by 2, then add 1"</strong>.</p>
+        <p>Work backwards to find the <strong>4th term</strong>: <input type="number" id="s3_q1"></p>
+        <p>Work backwards to find the <strong>3rd term</strong>: <input type="number" id="s3_q2"></p>
 
         <button class="btn" onclick="checkStep3()">Check Answer</button>
         <div class="feedback" id="fb3"></div>
@@ -296,31 +429,34 @@
     <!-- STEP 4 -->
     <div class="step-card" id="step4">
         <span class="tag">Step 4 of 5</span>
-        <h2>Visual Patterns & Position-to-Term Rules</h2>
-        <p>Sequences can also be built using visual patterns (like dots or tiles)[cite: 7, 8, 9, 10]. A <strong>position-to-term rule</strong> allows you to calculate the term directly for any position (e.g., finding the 100th term without listing all previous numbers)[cite: 7, 8].</p>
+        <h2>Visual Dot Patterns & Position Rules</h2>
+        <p>Visual models help us discover a direct <strong>position-to-term rule</strong> so we can calculate any term (like the 100th term) without counting step-by-step!</p>
 
         <div class="pattern-display">
             <div class="pattern-item">
-                <div class="dots-grid" style="grid-template-columns: repeat(1, 16px);">
-                    <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dots-grid" style="grid-template-columns: repeat(2, 16px);">
+                    <div class="dot"></div><div class="dot"></div>
                 </div>
-                <small>Pattern 1 (3 dots)</small>
+                <small>Pattern 1 (2 dots)</small>
             </div>
             <div class="pattern-item">
                 <div class="dots-grid" style="grid-template-columns: repeat(2, 16px);">
-                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div>
+                    <div class="dot new-dot"></div><div class="dot new-dot"></div>
                 </div>
-                <small>Pattern 2 (5 dots)</small>
+                <small>Pattern 2 (4 dots)</small>
             </div>
             <div class="pattern-item">
-                <div class="dots-grid" style="grid-template-columns: repeat(3, 16px);">
-                    <div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div>
+                <div class="dots-grid" style="grid-template-columns: repeat(2, 16px);">
+                    <div class="dot"></div><div class="dot"></div>
+                    <div class="dot"></div><div class="dot"></div>
+                    <div class="dot new-dot"></div><div class="dot new-dot"></div>
                 </div>
-                <small>Pattern 3 (7 dots)</small>
+                <small>Pattern 3 (6 dots)</small>
             </div>
         </div>
 
-        <p>Complete the table to find the position-to-term rule[cite: 8]:</p>
+        <p>Complete the table to find the relationship between Position ($n$) and Dot Count:</p>
         <table>
             <thead>
                 <tr>
@@ -333,23 +469,23 @@
             </thead>
             <tbody>
                 <tr>
-                    <td><strong>Term (Dot count)</strong>[cite: 8]</td>
-                    <td>3</td>
-                    <td>5</td>
-                    <td>7</td>
-                    <td><input type="number" id="s4_t1"></td>
-                </tr>
-                <tr>
-                    <td><strong>$2 \times \text{Position Number}$</strong>[cite: 8]</td>
+                    <td><strong>Term (Dot Count)</strong></td>
                     <td>2</td>
                     <td>4</td>
                     <td>6</td>
+                    <td><input type="number" id="s4_t1"></td>
+                </tr>
+                <tr>
+                    <td><strong>Calculation ($2 \times n$)</strong></td>
+                    <td>$2 \times 1 = 2$</td>
+                    <td>$2 \times 2 = 4$</td>
+                    <td>$2 \times 3 = 6$</td>
                     <td><input type="number" id="s4_t2"></td>
                 </tr>
             </tbody>
         </table>
 
-        <p>The position-to-term rule is: <strong>$\text{Term} = 2 \times \text{Position Number} + $</strong> <input type="number" id="s4_rule">[cite: 8]</p>
+        <p>The position-to-term rule is: <strong>Term = Position Number &times; </strong> <input type="number" id="s4_rule"></p>
 
         <button class="btn" onclick="checkStep4()">Check Answer</button>
         <div class="feedback" id="fb4"></div>
@@ -364,20 +500,20 @@
     <div class="step-card" id="step5">
         <span class="tag">Step 5 of 5</span>
         <h2>Final Codebreaker Challenge!</h2>
-        <p>Use everything you have learned to complete the final challenge[cite: 1, 5].</p>
+        <p>Put your new skills to work in this final master challenge.</p>
 
         <div class="interactive-box">
-            <p>The first three terms of a sequence are <strong>8, 10, 14, ...</strong>[cite: 5]</p>
-            <p><strong>A.</strong> Which of these is the correct term-to-term rule?[cite: 5]</p>
-            <select id="s5_q1" style="padding:8px; border-radius:6px; font-size:1rem; margin-bottom:15px;">
+            <p>The first three terms of a simple sequence are <strong>2, 5, 11, ...</strong></p>
+            <p><strong>A.</strong> Which rule generates this sequence?</p>
+            <select id="s5_q1" style="padding:8px; border-radius:6px; font-size:1rem; margin-bottom:15px; width: 100%; max-width: 320px;">
                 <option value="">-- Choose Option --</option>
-                <option value="A">A: Multiply by 3 then subtract 14</option>
-                <option value="B">B: Divide by 2 then add 6</option>
-                <option value="C">C: Subtract 3 then multiply by 2</option>
-            </select>[cite: 5]
+                <option value="A">A: Add 3 each time</option>
+                <option value="B">B: Multiply by 2, then add 1</option>
+                <option value="C">C: Multiply by 3, then subtract 1</option>
+            </select>
 
             <p><strong>B.</strong> What is the 4th term in this sequence? <input type="number" id="s5_q2"></p>
-            <p><strong>C.</strong> Which is the <em>first term</em> in this sequence greater than 50? <input type="number" id="s5_q3">[cite: 5]</p>
+            <p><strong>C.</strong> What is the 5th term in this sequence? <input type="number" id="s5_q3"></p>
         </div>
 
         <button class="btn" onclick="checkStep5()">Submit Final Challenge</button>
@@ -402,13 +538,13 @@
         const rule = parseFloat(document.getElementById('s1_rule').value);
         const fb = document.getElementById('fb1');
 
-        if (q1 === 21 && q2 === 24.5 && rule === 3.5) {
+        if (q1 === 12 && q2 === 14 && rule === 2) {
             fb.className = "feedback correct";
-            fb.innerHTML = "Correct! The sequence adds 3.5 each time (17.5 + 3.5 = 21, 21 + 3.5 = 24.5).";
+            fb.innerHTML = "Spot on! The numbers increase by 2 each step (10 + 2 = 12, 12 + 2 = 14).";
             document.getElementById('next1').style.display = "inline-block";
         } else {
             fb.className = "feedback incorrect";
-            fb.innerHTML = "Not quite! Look at the gap between 7 and 10.5. $10.5 - 7 = 3.5$. Try adding 3.5 to 17.5.";
+            fb.innerHTML = "Not quite. Look at the jump from 4 to 6. How much is added? Add that same amount to 10!";
         }
     }
 
@@ -419,13 +555,13 @@
         const q4 = parseFloat(document.getElementById('s2_q4').value);
         const fb = document.getElementById('fb2');
 
-        if (q1 === 0.8 && q2 === 1.6 && q3 === 17.5 && q4 === 15) {
+        if (q1 === 6 && q2 === 12 && q3 === 15 && q4 === 10) {
             fb.className = "feedback correct";
-            fb.innerHTML = "Great job! You calculated decimal multiplications and subtractions correctly.";
+            fb.innerHTML = "Excellent work! You calculated the pattern terms correctly.";
             document.getElementById('next2').style.display = "inline-block";
         } else {
             fb.className = "feedback incorrect";
-            fb.innerHTML = "Double check your math: $0.4 \\times 2 = 0.8$, $0.8 \\times 2 = 1.6$. For set 2: $20 - 2.5 = 17.5$, $17.5 - 2.5 = 15$.";
+            fb.innerHTML = "Double-check your calculations: 3 &times; 2 = 6, 6 &times; 2 = 12. For set 2: 20 - 5 = 15, 15 - 5 = 10.";
         }
     }
 
@@ -434,19 +570,19 @@
         const q2 = parseFloat(document.getElementById('s3_q2').value);
         const fb = document.getElementById('fb3');
 
-        // Rule forward: +3 then *2
-        // Reverse: divide by 2 then subtract 3
-        // 7th term = 442
-        // 6th term = (442 / 2) - 3 = 221 - 3 = 218
-        // 5th term = (218 / 2) - 3 = 109 - 3 = 106
+        // Forward: x2, +1
+        // Backward: -1, /2
+        // 5th = 25
+        // 4th = (25 - 1) / 2 = 12
+        // 3rd = (12 - 1) / 2 = 5.5
 
-        if (q1 === 218 && q2 === 106) {
+        if (q1 === 12 && q2 === 5.5) {
             fb.className = "feedback correct";
-            fb.innerHTML = "Excellent reverse problem solving! To reverse 'add 3 then multiply by 2', you divide by 2 then subtract 3.";
+            fb.innerHTML = "Outstanding reverse problem-solving! To undo 'multiply by 2 then add 1', you subtract 1 and then divide by 2.";
             document.getElementById('next3').style.display = "inline-block";
         } else {
             fb.className = "feedback incorrect";
-            fb.innerHTML = "Hint: Work backwards! Opposite of multiply by 2 is divide by 2 ($442 \\div 2 = 221$). Then opposite of add 3 is subtract 3 ($221 - 3 = 218$). Repeat for the 5th term!";
+            fb.innerHTML = "Hint: Work backwards! First subtract 1 from 25 (24), then divide by 2 (12). Repeat the same process on 12 for the 3rd term!";
         }
     }
 
@@ -456,13 +592,13 @@
         const rule = parseInt(document.getElementById('s4_rule').value);
         const fb = document.getElementById('fb4');
 
-        if (t1 === 9 && t2 === 8 && rule === 1) {
+        if (t1 === 8 && t2 === 8 && rule === 2) {
             fb.className = "feedback correct";
-            fb.innerHTML = "Awesome! Notice how $2 \\times \\text{Position} + 1$ matches every term count perfectly ($2(1)+1 = 3$, $2(2)+1 = 5$, etc.).";
+            fb.innerHTML = "Awesome! The dot count is always twice the position number (Position &times; 2).";
             document.getElementById('next4').style.display = "inline-block";
         } else {
             fb.className = "feedback incorrect";
-            fb.innerHTML = "Check your pattern: Pattern 4 has 9 dots. $2 \\times 4 = 8$. Since $8 + 1 = 9$, the missing rule constant is +1.";
+            fb.innerHTML = "Check your pattern: Pattern 4 adds 2 more dots to Pattern 3, giving 8 dots. Since 4 &times; 2 = 8, the multiplier is 2.";
         }
     }
 
@@ -472,20 +608,20 @@
         const q3 = parseInt(document.getElementById('s5_q3').value);
         const fb = document.getElementById('fb5');
 
-        // Sequence: 8, 10, 14, 22, 38, 70...
-        // Rule: Subtract 3 then multiply by 2
-        // 1st term = 8 -> (8-3)*2 = 10
-        // 2nd term = 10 -> (10-3)*2 = 14
-        // 3rd term = 14 -> (14-3)*2 = 22
-        // 4th term = 22 -> (22-3)*2 = 38
-        // 5th term = 38 -> (38-3)*2 = 70 (First > 50)
+        // Sequence: 2, 5, 11
+        // Rule B: x2, +1
+        // 1st: 2
+        // 2nd: 2*2 + 1 = 5
+        // 3rd: 5*2 + 1 = 11
+        // 4th: 11*2 + 1 = 23
+        // 5th: 23*2 + 1 = 47
 
-        if (q1 === 'C' && q2 === 22 && q3 === 70) {
+        if (q1 === 'B' && q2 === 23 && q3 === 47) {
             fb.className = "feedback correct";
-            fb.innerHTML = "Congratulations! You have completed the sequence module and unlocked the Codebreaker Badge!";
+            fb.innerHTML = "Congratulations! You have mastered sequence rules and earned the Codebreaker Badge!";
         } else {
             fb.className = "feedback incorrect";
-            fb.innerHTML = "Check your work: Test Rule C on term 1 ($8 - 3 = 5$, then $5 \\times 2 = 10$). Apply this rule repeatedly to get 22, 38, and find the first value over 50.";
+            fb.innerHTML = "Check your work: Test Rule B (2 &times; 2 + 1 = 5, 5 &times; 2 + 1 = 11). Apply 'multiply by 2 then add 1' to find the 4th and 5th terms.";
         }
     }
 </script>
